@@ -1,0 +1,22 @@
+<dx-button
+    text="Apply"
+    type="default"
+    (onClick)="apply()">
+</dx-button>
+
+<span>&nbsp; &nbsp;{{startDay}} - {{endDay}}</span>
+
+<dx-accordion
+        #accordion
+        [dataSource]="tables"
+        [collapsible]="true"
+        [multiple]="true"
+        [animationDuration]="300">
+
+    <div *dxTemplate="let table of 'title'">
+        {{table.table}}
+    </div>
+    <div *dxTemplate="let table of 'item'">
+        <app-table-audit table="{{table.table}}" columns="{{table.columns}}" startDay="{{startDay}}"  endDay="{{endDay}}"></app-table-audit>
+    </div>
+</dx-accordion>
