@@ -1,0 +1,25 @@
+<div>
+    <dx-data-grid #grid
+        [dataSource]="dataSource"
+        [remoteOperations]="false"
+        [allowColumnReordering]="true"
+        [rowAlternationEnabled]="true"
+        [showBorders]="true"
+        
+        [(selectedRowKeys)]="selectedRows"
+        >
+
+        <dxo-selection
+            selectAllMode="allPage"
+            showCheckBoxesMode="onClick"
+            mode="multiple">
+        </dxo-selection>
+        <dxo-paging [pageSize]="10"></dxo-paging>
+
+        <dxi-column dataField="table" caption="Table" dataType="string"></dxi-column>
+        <dxi-column dataField="insert" caption="Insert" dataType="number"></dxi-column>
+        <dxi-column dataField="update" caption="Update" dataType="number"></dxi-column>
+        <dxi-column dataField="delete" caption="Delete" dataType="number"></dxi-column>
+    </dx-data-grid>
+    <app-summary-emitter selectedTables="{{grid.selectedRowKeys.length ? (grid.instance.getSelectedRowsData() | stringifyTables) : ''}}"></app-summary-emitter>
+</div>

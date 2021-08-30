@@ -1,0 +1,24 @@
+<br/>Select mandatory columns in the result view
+<br/><br/>
+<dx-data-grid 
+    #grid
+    [dataSource]="selectedTables"
+    [allowColumnReordering]="true"
+    [showBorders]="true">  
+    
+        <dxo-selection
+            selectAllMode="allPage"
+            showCheckBoxesMode="onClick"
+            mode="multiple">
+        </dxo-selection>
+
+        <dxo-paging [pageSize]="10"></dxo-paging>
+
+        <dxi-column dataField="table_name" caption="Table" dataType="string" [groupIndex]="0"></dxi-column>
+        <dxi-column dataField="column_name" caption="Column" dataType="string"></dxi-column>
+        <dxi-column dataField="column_type" caption="Type" dataType="string"></dxi-column>
+        <dxi-column dataField="column_id" caption="Column Id" dataType="number"></dxi-column>
+        
+</dx-data-grid>
+
+<app-column-emitter selectedColumns="{{grid.selectedRowKeys.length ? (grid.instance.getSelectedRowsData() | stringifyColumns) : ''}}"></app-column-emitter>

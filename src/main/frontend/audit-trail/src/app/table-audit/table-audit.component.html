@@ -1,0 +1,40 @@
+
+<div class="filter-container">
+    <dx-drop-down-button
+        #groupColumn
+        text="Group by Column"
+        [items]="groups"
+        [dropDownOptions]="{ width: 250 }"
+        (onItemClick)="onSetGroup($event)"
+    >
+    </dx-drop-down-button>
+
+    <div class="dx-clearfix"></div>
+</div>
+
+<dx-toast [(visible)]="isVisible" type="warning" message="Results will only display the top {{maxRow}} rows.">
+    <dxo-position
+        my="center"
+        at="center"
+        of="#groupColumn">
+    </dxo-position>
+</dx-toast>
+
+<dx-data-grid
+    id="gridContainer"
+    [dataSource]="datasource"
+    [showBorders]="true">
+
+    <dxo-column-chooser [enabled]="true"></dxo-column-chooser>
+    
+    <dxo-header-filter 
+        [visible]="true"></dxo-header-filter>
+
+    <dxo-search-panel 
+        [visible]="true" 
+        [width]="240" 
+        placeholder="Search..."></dxo-search-panel>
+    
+    <dxo-scrolling columnRenderingMode="standard"></dxo-scrolling>
+
+</dx-data-grid>
